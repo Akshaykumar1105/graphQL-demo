@@ -47,8 +47,9 @@ class AuthService
     {
         if (auth('sanctum')->check()) {
             Auth::user()->tokens()->delete();
+            return true;
         }
-        return true;
+        return false;
     }
 
     public function forgetPassword($args)
