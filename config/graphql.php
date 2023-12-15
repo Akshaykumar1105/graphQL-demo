@@ -68,7 +68,6 @@ return [
     //          'mutation' => [
     //
     //          ],
-    //          'middleware' => ['auth'],
     //      ],
     //  ]
     //
