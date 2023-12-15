@@ -79,6 +79,7 @@ return [
                 "blogCollecyionQuery" => \App\GraphQL\Queries\Blog\BlogCollectionQuery::class,
                 "blogResourceQuery" => \App\GraphQL\Queries\Blog\BlogResourceQuery::class,
                 'userCollection' => \App\GraphQL\Queries\User\UserCollection::class,
+                "categoryCollection" => \App\GraphQL\Queries\Category\CategoryCollection::class,
             ],
             'mutation' => [
                "logOut" => App\Graphql\Mutations\Auth\LogOut::class,
@@ -100,7 +101,7 @@ return [
         'open' => [
             'query' => [
                 "user" => App\GraphQL\Queries\UserQuery::class,
-                
+  
             ],
             'mutation' => [
                 "login" => App\Graphql\Mutations\Auth\Login::class,
