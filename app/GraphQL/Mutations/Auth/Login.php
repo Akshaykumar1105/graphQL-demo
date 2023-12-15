@@ -2,12 +2,12 @@
 
 namespace App\Graphql\Mutations\Auth;
 
-use App\Services\AuthService;
 use Closure;
-use GraphQL\Type\Definition\ResolveInfo;
+use App\Services\AuthService;
 use GraphQL\Type\Definition\Type;
-use Rebing\GraphQL\Support\Facades\GraphQL;
 use Rebing\GraphQL\Support\Mutation;
+use GraphQL\Type\Definition\ResolveInfo;
+use Rebing\GraphQL\Support\Facades\GraphQL;
 
 class Login extends Mutation{
 

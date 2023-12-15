@@ -2,16 +2,11 @@
 
 namespace App\Graphql\Mutations\Auth;
 
-use App\Models\User as ModelsUser;
-use App\Services\AuthService;
 use Closure;
-use GraphQL\Type\Definition\ResolveInfo;
+use App\Services\AuthService;
 use GraphQL\Type\Definition\Type;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Validation\ValidationException;
-use Rebing\GraphQL\Support\Facades\GraphQL;
 use Rebing\GraphQL\Support\Mutation;
-use Rebing\GraphQL\Support\SelectFields;
+use GraphQL\Type\Definition\ResolveInfo;
 
 class ChangePassword extends Mutation{
 

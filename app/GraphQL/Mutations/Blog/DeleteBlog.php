@@ -2,14 +2,11 @@
 
 namespace App\Graphql\Mutations\Blog;
 
-use App\Services\BlogService;
 use Closure;
-use GraphQL\Type\Definition\ResolveInfo;
+use App\Services\BlogService;
 use GraphQL\Type\Definition\Type;
-use Rebing\GraphQL\Support\Facades\GraphQL;
 use Rebing\GraphQL\Support\Mutation;
-
-
+use GraphQL\Type\Definition\ResolveInfo;
 class DeleteBlog extends Mutation
 {
 

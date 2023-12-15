@@ -3,9 +3,8 @@
 namespace App\Services;
 
 use App\Models\Blog;
-use Illuminate\Support\Facades\Auth;
-use Plank\Mediable\Facades\MediaUploader;
 use Plank\Mediable\Media;
+use Illuminate\Support\Facades\Auth;
 
 class BlogService
 {

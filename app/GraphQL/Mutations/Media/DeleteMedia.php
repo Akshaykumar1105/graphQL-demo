@@ -7,8 +7,6 @@ use App\Services\MediaService;
 use GraphQL\Type\Definition\Type;
 use Rebing\GraphQL\Support\Mutation;
 use GraphQL\Type\Definition\ResolveInfo;
-use Rebing\GraphQL\Support\Facades\GraphQL;
-
 
 class DeleteMedia extends Mutation
 {

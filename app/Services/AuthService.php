@@ -2,15 +2,15 @@
 
 namespace App\Services;
 
-use App\Helpers\Helper;
-use App\Mail\ForgetPassword;
 use App\Models\User;
-use Illuminate\Support\Facades\Hash;
+use App\Helpers\Helper;
+use Plank\Mediable\Media;
+use App\Mail\ForgetPassword;
 use App\Services\UserOtpService;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Validation\ValidationException;
-use Plank\Mediable\Media;
 
 class AuthService
 {

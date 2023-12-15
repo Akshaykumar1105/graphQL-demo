@@ -2,8 +2,8 @@
 
 namespace App\Services;
 
-use App\Models\UserOtp;
 use Carbon\Carbon;
+use App\Models\UserOtp;
 
 class UserOtpService
 {

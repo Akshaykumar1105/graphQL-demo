@@ -2,14 +2,13 @@
 
 namespace App\GraphQL\Queries\Blog;
 
-use App\Models\User as ModelsUser;
+use Closure;
 use App\Services\BlogService;
 use App\Traits\SelectFieldTrait;
-use Closure;
-use Rebing\GraphQL\Support\Facades\GraphQL;
-use GraphQL\Type\Definition\ResolveInfo;
 use GraphQL\Type\Definition\Type;
 use Rebing\GraphQL\Support\Query;
+use GraphQL\Type\Definition\ResolveInfo;
+use Rebing\GraphQL\Support\Facades\GraphQL;
 
 class BlogResourceQuery extends Query
 {

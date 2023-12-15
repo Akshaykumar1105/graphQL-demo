@@ -2,15 +2,11 @@
 
 namespace App\Graphql\Mutations\Auth;
 
-use App\Helpers\Helper;
-use App\Mail\ForgetPassword as MailForgetPassword;
-use App\Models\User as ModelsUser;
-use App\Services\AuthService;
 use Closure;
-use GraphQL\Type\Definition\ResolveInfo;
+use App\Services\AuthService;
 use GraphQL\Type\Definition\Type;
-use Illuminate\Support\Facades\Mail;
 use Rebing\GraphQL\Support\Mutation;
+use GraphQL\Type\Definition\ResolveInfo;
 
 class ForgetPassword extends Mutation{
 

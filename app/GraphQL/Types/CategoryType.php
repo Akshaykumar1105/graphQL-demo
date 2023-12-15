@@ -6,7 +6,6 @@ namespace App\GraphQL\Types;
 
 use App\Models\Category;
 use GraphQL\Type\Definition\Type;
-use Rebing\GraphQL\Support\Facades\GraphQL as FacadesGraphQL;
 use Rebing\GraphQL\Support\Type as GraphQLType;
 
 class CategoryType extends GraphQLType
