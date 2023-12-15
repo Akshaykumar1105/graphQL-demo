@@ -19,7 +19,7 @@ class DeleteBlog extends Mutation
 
     protected $attributes = [
         'name' => 'deleteBlog',
-        'description' => 'A mutation for login'
+        'description' => 'A mutation for delete blog'
     ];
 
 

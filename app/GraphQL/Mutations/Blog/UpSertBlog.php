@@ -19,7 +19,7 @@ class UpSertBlog extends Mutation
 
     protected $attributes = [
         'name' => 'blog',
-        'description' => 'A mutation for login'
+        'description' => 'A mutation for blog create and update blog'
     ];
 
 

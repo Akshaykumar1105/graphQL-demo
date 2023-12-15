@@ -21,7 +21,7 @@ class ChangePassword extends Mutation{
 
     protected $attributes = [
         'name' => 'changePassword',
-        'description' => 'A mutation for login'
+        'description' => 'A mutation for change password'
     ];
     
 
