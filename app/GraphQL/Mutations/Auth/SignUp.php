@@ -18,7 +18,7 @@ class SignUp extends Mutation
 
     protected $attributes = [
         'name' => 'signUp',
-        'description' => 'A mutation for login'
+        'description' => 'A mutation for user sign up'
     ];
 
 
