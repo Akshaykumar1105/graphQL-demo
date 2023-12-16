@@ -13,7 +13,7 @@ use Rebing\GraphQL\Support\Facades\GraphQL;
 class UpSertBlog extends Mutation
 {
 
-    public function __construct(private BlogService $blogservice){
+    public function __construct(private BlogService $blogService){
 
     }
 
@@ -68,9 +68,9 @@ class UpSertBlog extends Mutation
     public function resolve($root, array $args, $context, ResolveInfo $resolveInfo, Closure $getSelectFields)
     {
         if(!isset($args['id'])){
-          return  $this->blogservice->store($args);
+          return  $this->blogService->store($args);
         }
 
-        return $this->blogservice->update($args);
+        return $this->blogService->update($args);
     }
 }

@@ -24,7 +24,7 @@ class LoginUser extends GraphQLType
             ],
             "token" => [
                 "type" => Type::string(),
-                "description" => "Name of user",
+                "description" => "login token",
             ]
         ];
     }

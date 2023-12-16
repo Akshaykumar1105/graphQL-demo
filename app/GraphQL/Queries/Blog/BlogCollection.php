@@ -10,7 +10,7 @@ use Rebing\GraphQL\Support\Query;
 use GraphQL\Type\Definition\ResolveInfo;
 use Rebing\GraphQL\Support\Facades\GraphQL;
 
-class BlogCollectionQuery extends Query
+class BlogCollection extends Query
 {
     use SelectFieldTrait;
 

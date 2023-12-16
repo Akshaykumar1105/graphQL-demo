@@ -8,7 +8,7 @@ use GraphQL\Type\Definition\Type;
 use Rebing\GraphQL\Support\Mutation;
 use GraphQL\Type\Definition\ResolveInfo;
 
-class ForgetPassword extends Mutation{
+class ForgotPassword extends Mutation{
 
     public function __construct(private AuthService $authService){
 
@@ -16,8 +16,8 @@ class ForgetPassword extends Mutation{
    
 
     protected $attributes = [
-        'name' => 'forgetPassword',
-        'description' => 'A mutation for forget password'
+        'name' => 'forgotPassword',
+        'description' => 'A mutation for forgot password'
     ];
     
 
@@ -38,6 +38,6 @@ class ForgetPassword extends Mutation{
 
     public function resolve($root, array $args, $context, ResolveInfo $resolveInfo, Closure $getSelectFields)
     {
-       return $this->authService->forgetPassword($args);
+       return $this->authService->forgotPassword($args);
     }
 }

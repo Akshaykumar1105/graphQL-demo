@@ -28,17 +28,19 @@ class ChangePassword extends Mutation{
     public function args(): array
     {
         return [
-            'current_password' => [
+            'currentPassword' => [
                 "type" => Type::string(),
                 'rules' => ['required'],
+                "alias" => 'current_password',
             ],
             'password' => [
                 "type" => Type::string(),
                 'rules' => ['required', 'string', 'min:8', 'regex:' . config('site.password.regex')],
             ],
-            'confirm_password' => [
+            'confirmPassword' => [
                 "type" => Type::string(),
                 'rules' => ['required', 'same:password'],
+                "alias" => 'confirm_password',
             ],
         ];
     }

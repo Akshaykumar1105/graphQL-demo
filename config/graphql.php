@@ -76,13 +76,13 @@ return [
         'default' => [
             'query' => [
                 "user" => App\GraphQL\Queries\User\UserResource::class,
-                "blogCollecyionQuery" => \App\GraphQL\Queries\Blog\BlogCollectionQuery::class,
-                "blogResourceQuery" => \App\GraphQL\Queries\Blog\BlogResourceQuery::class,
+                "blogCollecyion" => \App\GraphQL\Queries\Blog\BlogCollection::class,
+                "blogResource" => \App\GraphQL\Queries\Blog\BlogResource::class,
                 'userCollection' => \App\GraphQL\Queries\User\UserCollection::class,
                 "categoryCollection" => \App\GraphQL\Queries\Category\CategoryCollection::class,
             ],
             'mutation' => [
-               "logOut" => App\Graphql\Mutations\Auth\LogOut::class,
+               "logout" => App\Graphql\Mutations\Auth\Logout::class,
                "changePassword" => App\Graphql\Mutations\Auth\ChangePassword::class,
                "blog" => App\Graphql\Mutations\Blog\UpSertBlog::class,
                "deleteBlog" => \App\GraphQl\Mutations\Blog\DeleteBlog::class,
@@ -106,7 +106,7 @@ return [
             'mutation' => [
                 "login" => App\Graphql\Mutations\Auth\Login::class,
                 "signUp" => App\Graphql\Mutations\Auth\SignUp::class,
-                "forgetPassword" => App\Graphql\Mutations\Auth\ForgetPassword::class,
+                "forgotPassword" => App\Graphql\Mutations\Auth\ForgotPassword::class,
                 "resetPassword" => App\Graphql\Mutations\Auth\ResetPassword::class,
                 "uploadMedia" => App\Graphql\Mutations\Media\UploadMedia::class,
                 "deleteMedia" =>\App\Graphql\Mutations\Blog\DeleteBlog::class,

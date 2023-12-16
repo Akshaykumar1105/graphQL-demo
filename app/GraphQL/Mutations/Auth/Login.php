@@ -30,11 +30,9 @@ class Login extends Mutation{
     {
         return [
             'email' => [
-                "name" => "email",
                 "type" => Type::string()
             ],
             'password' => [
-                "name" => "password",
                 "type" => Type::string(),
                 'rules' => ['required', 'regex:' . config('site.password.regex')],
             ]

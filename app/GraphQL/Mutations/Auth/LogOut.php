@@ -8,14 +8,14 @@ use GraphQL\Type\Definition\Type;
 use Rebing\GraphQL\Support\Mutation;
 use GraphQL\Type\Definition\ResolveInfo;
 
-class LogOut extends Mutation{
+class Logout extends Mutation{
 
     public function __construct(private AuthService $authService){
 
     }
 
     protected $attributes = [
-        'name' => 'LogOut',
+        'name' => 'Logout',
         'description' => 'A mutation for logout'
     ];
     

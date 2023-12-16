@@ -26,15 +26,18 @@ class BlogService
         }elseif($categoryId){
             $blogs->categoryFilter($args['category_id']);
         }
+
         return $blogs->paginate($args['limit'], ['*'], 'page', $args['page']);
     }
 
     public function store($args)
     {
         $args['user_id'] = Auth::id();
+
         $blog = $this->blogObj->create($args);
 
         $media = Media::find($args['media_id']);
+        
         $blog->attachMedia($media, ['blog']);
 
         return $blog;
@@ -50,9 +53,9 @@ class BlogService
         return  $this->blogObj->whereId($args['id'])->update($args);
     }
 
-    public function destroy($args)
+    public function destroy($id)
     {
-        $blog = $this->blogObj->whereId($args['id'])->first();
+        $blog = $this->blogObj->whereId($id)->first();
 
         foreach ($blog->getMedia('blog') as $media) {
             $media->delete();

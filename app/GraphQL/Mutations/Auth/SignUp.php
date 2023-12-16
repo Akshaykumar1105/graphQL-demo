@@ -30,13 +30,15 @@ class SignUp extends Mutation
     public function args(): array
     {
         return [
-            'first_name' => [
+            'firstName' => [
                 "type" => Type::string(),
                 'rules' => ['required'],
+                "alias" => 'first_name',
             ],
-            'last_name' => [
+            'lastName' => [
                 "type" => Type::string(),
                 'rules' => ['required'],
+                "alias" => 'last_name',
             ],
             'email' => [
                 "type" => Type::string(),
@@ -46,13 +48,14 @@ class SignUp extends Mutation
                 "type" => Type::string(),
                 'rules' => ['required', 'string', 'min:8', 'regex:' . config('site.password.regex')],
             ],
-            'confirm_password' => [
+            'confirmPassword' => [
                 "type" => Type::string(),
                 'rules' => ['required', 'same:password'],
+                "alias" => 'confirm_password',
             ],
             'mediaId' => [
                 "type" => Type::int(),
-                'rules' => ['required'],
+                'rules' => ['nullable'],
                 "alias" => 'media_id',
             ]
         ];

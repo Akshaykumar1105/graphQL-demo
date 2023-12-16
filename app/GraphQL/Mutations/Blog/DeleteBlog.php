@@ -10,12 +10,12 @@ use GraphQL\Type\Definition\ResolveInfo;
 class DeleteBlog extends Mutation
 {
 
-    public function __construct(private BlogService $blogservice){
+    public function __construct(private BlogService $blogService){
 
     }
 
     protected $attributes = [
-        'name' => 'deleteBlog',
+        'name' => 'delete blog',
         'description' => 'A mutation for delete blog'
     ];
 
@@ -30,13 +30,13 @@ class DeleteBlog extends Mutation
         return [
             'id' => [
                 "type" => Type::int(),
-                'rules' => [ 'nullable','exists:blogs,id'],
+                'rules' => [ 'required','exists:blogs,id'],
             ],
         ];
     }
 
     public function resolve($root, array $args, $context, ResolveInfo $resolveInfo, Closure $getSelectFields)
     {
-        return $this->blogservice->destroy($args);
+        return $this->blogService->destroy($args['id']);
     }
 }

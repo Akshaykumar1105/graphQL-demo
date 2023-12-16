@@ -27,27 +27,27 @@ class BlogType extends GraphQLType
             ],
             "title" => [
                 "type" => Type::string(),
-                "description" => "Name of user",
+                "description" => "Title of the blog",
             ],
             "slug" => [
                 "type" => Type::string(),
-                "description" => "Name of user",
+                "description" => "Slug of the blog",
             ],
             "category_id" => [
                 "type" => Type::string(),
-                "description" => "Name of user",
+                "description" => "Category of the blog",
             ],
             "summary" => [
                 "type" => Type::string(),
-                "description" => "Name of user",
+                "description" => "Summary of the blog",
             ],
             "description" => [
                 "type" => Type::string(),
-                "description" => "Name of user",
+                "description" => "Full description of the blog",
             ],
             "is_published" => [
                 "type" => Type::string(),
-                "description" => "Name of user",
+                "description" => "Indicates whether the blog is published",
             ],
             "created_at" => [
                 "type" => Type::string(),

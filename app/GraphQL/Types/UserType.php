@@ -22,21 +22,24 @@ class UserType extends GraphQLType
                 'type' => Type::int(),
                 'description' => 'The id of the user',
             ],
-            'first_name' => [
+            'firstName' => [
                 'type' => Type::string(),
                 'description' => 'The first name of user',
+                "alias" => 'first_name',
             ],
-            'last_name' => [
+            'lastName' => [
                 'type' => Type::string(),
                 'description' => 'The last name of user',
+                "alias" => 'last_name',
             ],
             'email' => [
                 'type' => Type::string(),
                 'description' => 'The email of user',
             ],
-            'mobile_no' => [
+            'mobileNo' => [
                 'type' => Type::string(),
                 'description' => 'Mobile number of user',
+                "alias" => 'mobile_no',
             ],
             'name' => [
                 'type' => Type::string(),

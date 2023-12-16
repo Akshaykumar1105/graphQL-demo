@@ -16,8 +16,8 @@ class ResetPassword extends Mutation
     }
 
     protected $attributes = [
-        'name' => 'forgetPassword',
-        'description' => 'A mutation for forget password'
+        'name' => 'reset Password',
+        'description' => 'A mutation for reset password'
     ];
 
 
@@ -37,9 +37,10 @@ class ResetPassword extends Mutation
                 "type" => Type::string(),
                 'rules' => ['required', 'string', 'min:8', 'regex:' . config('site.password.regex')],
             ],
-            'confirm_password' => [
+            'confirmPassword' => [
                 "type" => Type::string(),
                 'rules' => ['required', 'same:password'],
+                "alias" => 'confirm_password',
             ],
             'otp' => [
                 "type" => Type::string(),

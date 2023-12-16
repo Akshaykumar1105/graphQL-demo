@@ -24,7 +24,9 @@ class UserOtpService
 
     public function otpExists($user, $otp)
     {
-        return $this->userOtpObj->whereUserId($user->id)->whereOtp($otp)->first();
+        $otp = $this->userOtpObj->whereUserId($user->id)->whereOtp($otp)->first();
+
+        return $this->isOtpExpired($otp);
     }
 
     public function isOtpExpired($otp)
