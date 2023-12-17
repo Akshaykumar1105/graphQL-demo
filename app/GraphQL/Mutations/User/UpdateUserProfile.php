@@ -1,15 +1,17 @@
 <?php
 
-namespace App\GraphQL\Queries\User;
+namespace App\Graphql\Mutations\User;
 
 use Closure;
+use App\Services\MediaService;
 use App\Services\UserService;
 use GraphQL\Type\Definition\Type;
-use Rebing\GraphQL\Support\Query;
+use Rebing\GraphQL\Support\Mutation;
 use GraphQL\Type\Definition\ResolveInfo;
 use Rebing\GraphQL\Support\Facades\GraphQL;
 
-class UserResource extends Query
+
+class UpdateUserProfile extends Mutation
 {
 
     public function __construct(private UserService $userService)
@@ -17,21 +19,21 @@ class UserResource extends Query
     }
 
     protected $attributes = [
-        'name' => 'users',
+        'name' => 'updateUserProfile',
+        'description' => 'A mutation for update user profile '
     ];
+
 
     public function type(): Type
     {
-        return GraphQL::type('userType');
+        return GraphQL::type("userType");
     }
 
     public function args(): array
     {
         return [
-            'id' => [
-                'type' => Type::int(),
-                'description' => 'ID of the user',
-                'rules' => ['required']
+            'input' => [
+                'type' => GraphQL::type("updateUserInput"),
             ],
         ];
     }
@@ -40,8 +42,7 @@ class UserResource extends Query
     {
         $fileds = $getSelectFields();
         $args['select'] = $fileds->getSelect();
-        $args['with'] = $fileds->getRelations();
-
-        return $this->userService->resource($args);
+        
+        return $this->userService->update($args);
     }
 }

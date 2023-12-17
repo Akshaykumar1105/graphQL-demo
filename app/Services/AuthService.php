@@ -20,15 +20,15 @@ class AuthService
         //
     }
 
-    public function signUp($args, $getSelectFields)
+    public function signUp($args)
     {
-        $user = $this->userObj->create($args)->assignRole(config('site.roles.customer'));
+        $user = $this->userObj->create($args['input'])->assignRole(config('site.roles.customer'));
 
         $media = Media::find($args['media_id']);
 
         $user->attachMedia($media, ['avatar']);
 
-        return $user;
+        return $user->select($args['select']);
     }
 
     public function login($args)

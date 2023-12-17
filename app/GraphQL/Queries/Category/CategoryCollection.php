@@ -32,6 +32,10 @@ class CategoryCollection extends Query
 
     public function resolve($root, array $args, $context, ResolveInfo $resolveInfo, Closure $getSelectFields)
     {
-        return $this->categoryService->collection();
+        $fileds = $getSelectFields();
+        $args['select'] = $fileds->getSelect();
+        $args['with'] = $fileds->getRelations();
+
+        return $this->categoryService->collection($args);
     }
 }

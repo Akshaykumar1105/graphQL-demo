@@ -55,7 +55,10 @@ class BlogCollection extends Query
 
     public function resolve($root, array $args, $context, ResolveInfo $resolveInfo, Closure $getSelectFields)
     {
-        $fields = $getSelectFields();
-        return $this->blogService->collection($fields, $args);
+        $fileds = $getSelectFields();
+        $args['select'] = $fileds->getSelect();
+        $args['with'] = $fileds->getRelations();
+
+        return $this->blogService->collection($args);
     }
 }

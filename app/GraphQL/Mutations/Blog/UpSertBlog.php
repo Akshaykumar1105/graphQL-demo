@@ -32,41 +32,21 @@ class UpSertBlog extends Mutation
     {
         return [
             'id' => [
-                "name" => "blog_id",
                 "type" => Type::int(),
                 'rules' => [ 'nullable','exists:blogs,id'],
             ],
-            'category_id' => [
-                "type" => Type::int(),
-                'rules' => ['required', 'exists:categories,id'],
+            'input' => [
+                "type" => GraphQL::type("blogInput"),
             ],
-            'title' => [
-                "type" => Type::string(),
-                'rules' => ['required', 'string'],
-            ],
-            'summary' => [
-                "type" => Type::string(),
-                'rules' => ['required', 'string'],
-            ],
-            'description' => [
-                "type" => Type::string(),
-                'rules' => ['required'],
-            ],
-            'is_published' => [
-                "type" => Type::boolean(),
-                'rules' => ['required'],
-            ],
-            'mediaId' => [
-                "type" => Type::int(),
-                'rules' => ['required', 'exists:media,id'],
-                "alias" => 'media_id',
-            ]
-            
         ];
     }
 
     public function resolve($root, array $args, $context, ResolveInfo $resolveInfo, Closure $getSelectFields)
     {
+        $fileds = $getSelectFields();
+        $args['select'] = $fileds->getSelect();
+        $args['with'] = $fileds->getRelations();
+        
         if(!isset($args['id'])){
           return  $this->blogService->store($args);
         }

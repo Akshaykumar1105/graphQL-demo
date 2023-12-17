@@ -86,6 +86,7 @@ return [
                "changePassword" => App\Graphql\Mutations\Auth\ChangePassword::class,
                "blog" => App\Graphql\Mutations\Blog\UpSertBlog::class,
                "deleteBlog" => \App\GraphQl\Mutations\Blog\DeleteBlog::class,
+               "updateUserProfile" => \App\GraphQL\Mutations\User\UpdateUserProfile::class,
             ],
         
 
@@ -100,7 +101,7 @@ return [
         ],
         'open' => [
             'query' => [
-                "user" => App\GraphQL\Queries\UserQuery::class,
+                "user" => App\GraphQL\Queries\User\UserResource::class,
   
             ],
             'mutation' => [
@@ -109,7 +110,7 @@ return [
                 "forgotPassword" => App\Graphql\Mutations\Auth\ForgotPassword::class,
                 "resetPassword" => App\Graphql\Mutations\Auth\ResetPassword::class,
                 "uploadMedia" => App\Graphql\Mutations\Media\UploadMedia::class,
-                "deleteMedia" =>\App\Graphql\Mutations\Blog\DeleteBlog::class,
+                "deleteMedia" =>\App\Graphql\Mutations\Media\DeleteMedia::class,
             ],
             // The types only available in this schema
            
@@ -140,6 +141,9 @@ return [
         \Rebing\GraphQL\Support\UploadType::class,
         "mediaType" => \App\GraphQL\Types\Media::class,
         "categoryType" => \App\GraphQL\Types\CategoryType::class,
+        "userInput" => \App\GraphQL\Types\UserInput::class,
+        "blogInput" => \App\GraphQL\Types\BlogInput::class,
+        "updateUserInput" => \App\GraphQL\Types\UpdateUserInput::class,
         // ExampleRelationType::class,
         // \Rebing\GraphQL\Support\UploadType::class,
     ],

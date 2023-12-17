@@ -48,6 +48,10 @@ class UserCollection extends Query
 
     public function resolve($root, array $args, $context, ResolveInfo $resolveInfo, Closure $getSelectFields)
     {
-        return $this->userService->collection($args, $getSelectFields);
+        $fileds = $getSelectFields();
+        $args['select'] = $fileds->getSelect();
+        $args['with'] = $fileds->getRelations();
+
+        return $this->userService->collection($args);
     }
 }

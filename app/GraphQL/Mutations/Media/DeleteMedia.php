@@ -38,6 +38,6 @@ class DeleteMedia extends Mutation
 
     public function resolve($root, array $args, $context, ResolveInfo $resolveInfo, Closure $getSelectFields)
     {
-        return $this->mediaService->destroy($args);
+        return $this->mediaService->destroy($args['id']);
     }
 }

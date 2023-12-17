@@ -40,9 +40,10 @@ class BlogResource extends Query
 
     public function resolve($root, array $args, $context, ResolveInfo $resolveInfo, Closure $getSelectFields)
     {
-        $fields = $getSelectFields();
-        $select = $fields->getSelect();
-        $with = $fields->getRelations();
-        return $this->blogService->resource($args, $select, $with);
+        $fileds = $getSelectFields();
+        $args['select'] = $fileds->getSelect();
+        $args['with'] = $fileds->getRelations();
+
+        return $this->blogService->resource($args);
     }
 }

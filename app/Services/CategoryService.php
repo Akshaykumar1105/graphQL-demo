@@ -12,8 +12,8 @@ class CategoryService
         //
     }
 
-    public function collection()
+    public function collection($args)
     {
-        return $this->categoryObj->get();
+        return $this->categoryObj->select($args['select'])->get();
     }
 }

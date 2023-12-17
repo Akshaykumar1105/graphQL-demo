@@ -14,16 +14,16 @@ class BlogService
         //
     }
 
-    public function collection($fields, $args)
+    public function collection($args)
     {
         $search = $args['search'];
         $categoryId = $args['category_id'];
 
-        $blogs = $this->blogObj->select($fields->getSelect());
+        $blogs = $this->blogObj->with($args['with'])->select($args['select']);
 
         if ($search) {
             $blogs->search($search);
-        }elseif($categoryId){
+        } elseif ($categoryId) {
             $blogs->categoryFilter($args['category_id']);
         }
 
@@ -32,25 +32,29 @@ class BlogService
 
     public function store($args)
     {
-        $args['user_id'] = Auth::id();
+        $args['input']['user_id'] = Auth::id();
 
-        $blog = $this->blogObj->create($args);
+        $blog = $this->blogObj->create($args['input']);
 
-        $media = Media::find($args['media_id']);
-        
+        $media = Media::find($args['input']['media_id']);
+
         $blog->attachMedia($media, ['blog']);
 
         return $blog;
     }
 
-    public function resource($args, $select, $with)
+    public function resource($args)
     {
-        return  $this->blogObj->whereId($args['id'])->select($select)->first();
+        return  $this->blogObj->whereId($args['id'])->with($args['with'])->select($args['select'])->first();
     }
 
     public function update($args)
     {
-        return  $this->blogObj->whereId($args['id'])->update($args);
+        $blog = $this->blogObj->find($args['id']);
+
+        $blog->update($args['input']);
+
+        return $blog;
     }
 
     public function destroy($id)

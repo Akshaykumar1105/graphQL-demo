@@ -3,6 +3,8 @@
 namespace App\Services;
 
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
+use Plank\Mediable\Media;
 
 class UserService
 {
@@ -12,9 +14,9 @@ class UserService
         //
     }
 
-    public function collection($args, $getSelectFields)
+    public function collection($args)
     {
-        $blogs = $this->userObj->select($getSelectFields()->getSelect());
+        $blogs = $this->userObj->with($args['with'])->select($args['select']);
         $search = $args['search'];
         if ($search) {
             $blogs->search($search);
@@ -23,9 +25,20 @@ class UserService
         return $blogs->paginate($args['limit'], ['*'], 'page', $args['page']);
     }
 
-    public function resource($args, $getSelectFields)
+    public function resource($args)
     {
-        $fields = $getSelectFields();
-        return $this->userObj->where('id', $args['id'])->select($fields->getSelect())->first();
+        return $this->userObj->where('id', $args['id'])->with($args['with'])->select($args['select'])->first();
+    }
+
+    public function update($args){
+        $user = $this->userObj->find(Auth::id());
+
+        $user->update($args['input']);
+
+        $media = Media::find($args['input']['media_id']);
+
+        $user->syncMedia($media, ['blog']);
+        
+        return $user;
     }
 }
