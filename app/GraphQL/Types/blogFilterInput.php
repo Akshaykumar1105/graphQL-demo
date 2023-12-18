@@ -8,7 +8,7 @@ use GraphQL\Type\Definition\Type;
 use Rebing\GraphQL\Support\InputType;
 
 
-class blogFilterInput extends InputType
+class BlogFilterInput extends InputType
 {
     protected $attributes = [
         'name' => 'blogFilterInput',

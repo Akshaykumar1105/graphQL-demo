@@ -26,7 +26,7 @@ class UserOtpService
     {
         $otp = $this->userOtpObj->whereUserId($user->id)->whereOtp($otp)->first();
 
-        return $this->isOtpExpired($otp);
+        return $otp;
     }
 
     public function isOtpExpired($otp)
@@ -34,6 +34,6 @@ class UserOtpService
         $currentTime = Carbon::now();
         $expirationTime = $otp->created_at->addMinutes(config('site.otp_expiration_time'));
         
-        return $currentTime->lessThan($expirationTime);
+        return $currentTime->greaterThan($expirationTime);;
     }
 }

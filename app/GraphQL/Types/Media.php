@@ -37,21 +37,24 @@ class Media extends GraphQLType
                 'type' => Type::string(),
                 'description' => "extension of media"
             ],
-            "mime_type" => [
+            "mimeType" => [
                 'type' => Type::string(),
-                'description' => "mime type of media"
+                'description' => "mime type of media",
+                "alias" => 'mime_type',
             ],
             "size" => [
                 'type' => Type::string(),
                 'description' => "size of media"
             ],
-            'created_at' => [
+            'createdAt' => [
                 'type' => Type::string(),
-                'description' => "created media time"
+                'description' => "created media time",
+                "alias" => 'created_at',
             ],
-            'updated_at' => [
+            'updatedAt' => [
                 'type' => Type::string(),
-                'description' => "updated media time"
+                'description' => "updated media time",
+                "alias" => 'updated_at',
             ]
          ];
     }

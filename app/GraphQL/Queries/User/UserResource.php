@@ -17,7 +17,8 @@ class UserResource extends Query
     }
 
     protected $attributes = [
-        'name' => 'users',
+        'name' => 'userResource',
+        'description' => 'A query for show user'
     ];
 
     public function type(): Type
@@ -27,13 +28,7 @@ class UserResource extends Query
 
     public function args(): array
     {
-        return [
-            'id' => [
-                'type' => Type::int(),
-                'description' => 'ID of the user',
-                'rules' => ['required']
-            ],
-        ];
+        return [];
     }
 
     public function resolve($root, array $args, $context, ResolveInfo $resolveInfo, Closure $getSelectFields)

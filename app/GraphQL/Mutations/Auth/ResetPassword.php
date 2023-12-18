@@ -43,7 +43,7 @@ class ResetPassword extends Mutation
                 "alias" => 'confirm_password',
             ],
             'otp' => [
-                "type" => Type::string(),
+                "type" => Type::int(),
                 'rules' => ['required', 'exists:user_otps,otp'],
             ],
         ];

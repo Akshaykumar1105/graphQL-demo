@@ -43,16 +43,16 @@ class BlogService
         return $blog;
     }
 
-    public function resource($args)
+    public function resource($id, $args)
     {
-        return  $this->blogObj->whereId($args['id'])->with($args['with'])->select($args['select'])->first();
+        return  $this->blogObj->whereId($id)->with($args['with'])->select($args['select'])->first();
     }
 
-    public function update($args)
+    public function update($id, $inputs)
     {
-        $blog = $this->blogObj->find($args['id']);
+        $blog = $this->blogObj->find($id);
 
-        $blog->update($args['input']);
+        $blog->update($inputs);
 
         return $blog;
     }

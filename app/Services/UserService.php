@@ -18,6 +18,7 @@ class UserService
     {
         $blogs = $this->userObj->with($args['with'])->select($args['select']);
         $search = $args['search'];
+        
         if ($search) {
             $blogs->search($search);
         }
@@ -27,7 +28,7 @@ class UserService
 
     public function resource($args)
     {
-        return $this->userObj->where('id', $args['id'])->with($args['with'])->select($args['select'])->first();
+        return $this->userObj->whereId(Auth::id())->with($args['with'])->select($args['select'])->first();
     }
 
     public function update($args){

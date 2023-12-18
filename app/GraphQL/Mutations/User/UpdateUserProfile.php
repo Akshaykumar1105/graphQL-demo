@@ -8,6 +8,7 @@ use App\Services\UserService;
 use GraphQL\Type\Definition\Type;
 use Rebing\GraphQL\Support\Mutation;
 use GraphQL\Type\Definition\ResolveInfo;
+use Illuminate\Support\Facades\Auth;
 use Rebing\GraphQL\Support\Facades\GraphQL;
 
 
@@ -42,7 +43,8 @@ class UpdateUserProfile extends Mutation
     {
         $fileds = $getSelectFields();
         $args['select'] = $fileds->getSelect();
-        
-        return $this->userService->update($args);
+        $authId = Auth::id();
+
+        return $this->userService->update($authId ,$args);
     }
 }

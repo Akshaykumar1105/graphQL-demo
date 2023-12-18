@@ -51,6 +51,6 @@ class UpSertBlog extends Mutation
           return  $this->blogService->store($args);
         }
 
-        return $this->blogService->update($args);
+        return $this->blogService->update($args['id'], $args['input']);
     }
 }
