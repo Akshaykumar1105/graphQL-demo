@@ -76,7 +76,7 @@ return [
         'default' => [
             'query' => [
                 "user" => App\GraphQL\Queries\User\UserResource::class,
-                "blogCollecyion" => \App\GraphQL\Queries\Blog\BlogCollection::class,
+                "blogCollection" => \App\GraphQL\Queries\Blog\BlogCollection::class,
                 "blogResource" => \App\GraphQL\Queries\Blog\BlogResource::class,
                 'userCollection' => \App\GraphQL\Queries\User\UserCollection::class,
                 "categoryCollection" => \App\GraphQL\Queries\Category\CategoryCollection::class,
@@ -144,6 +144,8 @@ return [
         "userInput" => \App\GraphQL\Types\UserInput::class,
         "blogInput" => \App\GraphQL\Types\BlogInput::class,
         "updateUserInput" => \App\GraphQL\Types\UpdateUserInput::class,
+        'mediaInput' => \App\GraphQL\Types\MediaInput::class,
+        'blogFilterInput' => \App\GraphQL\Types\blogFilterInput::class,
         // ExampleRelationType::class,
         // \Rebing\GraphQL\Support\UploadType::class,
     ],

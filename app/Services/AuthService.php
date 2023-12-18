@@ -24,11 +24,13 @@ class AuthService
     {
         $user = $this->userObj->create($args['input'])->assignRole(config('site.roles.customer'));
 
-        $media = Media::find($args['media_id']);
+        if($args['input']['media_id']){
+            $media = Media::find($args['input']['media_id']);
 
-        $user->attachMedia($media, ['avatar']);
-
-        return $user->select($args['select']);
+            $user->attachMedia($media, ['avatar']);    
+        }
+        
+        return $user;
     }
 
     public function login($args)

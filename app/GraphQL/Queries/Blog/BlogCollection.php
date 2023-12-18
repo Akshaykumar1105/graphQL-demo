@@ -35,11 +35,6 @@ class BlogCollection extends Query
                 'description' => 'Search base on title and summary',
                 'rules' => ['nullable']
             ],
-            'category_id' => [
-                'type' => Type::int(),
-                'description' => 'The ID of the category to filter on',
-                'rules' => ['nullable']
-            ],
             'limit' => [
                 'type' => Type::int(),
                 'description' => 'pagination limit',
@@ -49,6 +44,9 @@ class BlogCollection extends Query
                 'type' => Type::int(),
                 'description' => 'pagination page',
                 'rules' => ['nullable']
+            ],
+            'input' => [
+                'type' => GraphQL::type('blogFilterInput')
             ],
         ];
     }

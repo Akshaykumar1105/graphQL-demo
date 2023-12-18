@@ -40,14 +40,14 @@ class UserInput extends InputType
             ],
             'confirmPassword' => [
                 "type" => Type::string(),
-                'rules' => ['required', 'same:password'],
+                'rules' => ['required'],
                 "alias" => 'confirm_password',
             ],
             'mediaId' => [
                 "type" => Type::int(),
                 'rules' => ['nullable', 'exists:media,id'],
                 "alias" => 'media_id',
-            ]
+            ],
         ];
     }
 }

@@ -17,14 +17,14 @@ class BlogService
     public function collection($args)
     {
         $search = $args['search'];
-        $categoryId = $args['category_id'];
+        $categoryId = $args['input']['category_id'];
 
         $blogs = $this->blogObj->with($args['with'])->select($args['select']);
 
         if ($search) {
             $blogs->search($search);
         } elseif ($categoryId) {
-            $blogs->categoryFilter($args['category_id']);
+            $blogs->categoryFilter($categoryId);
         }
 
         return $blogs->paginate($args['limit'], ['*'], 'page', $args['page']);

@@ -10,11 +10,9 @@ class MediaService
 
     public function store($args)
     {
-        
-
-        return MediaUploader::fromSource($args['image'])
+        return MediaUploader::fromSource($args['input']['image'])
             ->toDisk('public')
-            ->toDirectory($args['image_type'])
+            ->toDirectory($args['input']['image_type'])
             ->upload();
     }
 
@@ -22,11 +20,13 @@ class MediaService
     {
         $media = Media::find($args['id']);
 
-        $fileName = pathinfo($args['image']->getClientOriginalName(), PATHINFO_FILENAME);
+        $fileName = pathinfo($args['input']['image']->getClientOriginalName(), PATHINFO_FILENAME);
         
-        return MediaUploader::fromSource($args['image'])
+         MediaUploader::fromSource($args['input']['image'])
             ->useFilename($fileName)
             ->replace($media);
+
+        return $media;
     }
 
     public function destroy($id)

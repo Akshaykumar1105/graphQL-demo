@@ -35,14 +35,9 @@ class UploadMedia extends Mutation
                 'type' => Type::int(),
                 'rules' => ['nullable', 'exists:media,id'],
             ],
-            'image' => [
-                'type' => GraphQL::type('Upload'),
-                'rules' => ['required', 'image', 'mimes:jpeg,png,jpg,gif', 'max:15000'],
+            'input' => [
+                'type' => GraphQL::type('mediaInput')
             ],
-            'image_type' => [
-                'type' => Type::string(),
-                'rules' => ['required', 'in:' . implode(',', config('site.mediaType'))],
-            ]
         ];
     }
 
@@ -51,6 +46,7 @@ class UploadMedia extends Mutation
         if ($args['id']) {
             return $this->mediaService->update($args);
         }
+        
         return $this->mediaService->store($args);
     }
 }

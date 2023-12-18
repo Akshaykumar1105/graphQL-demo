@@ -7,6 +7,7 @@ use App\Services\AuthService;
 use GraphQL\Type\Definition\Type;
 use Rebing\GraphQL\Support\Mutation;
 use GraphQL\Type\Definition\ResolveInfo;
+use Illuminate\Support\Facades\Request;
 use Rebing\GraphQL\Support\Facades\GraphQL;
 
 
@@ -40,6 +41,8 @@ class SignUp extends Mutation
     {
         $fileds = $getSelectFields();
         $args['select'] = $fileds->getSelect();
+        $args['with'] = $fileds->getRelations();
+
         return $this->authService->signUp($args);
     }
 }
