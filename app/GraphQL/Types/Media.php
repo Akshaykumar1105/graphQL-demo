@@ -11,7 +11,7 @@ class Media extends GraphQLType
 {
     protected $attributes = [
         'name' => 'mediaType',
-        'description' => 'A type'
+        'description' => 'A type media'
     ];
 
     public function fields(): array

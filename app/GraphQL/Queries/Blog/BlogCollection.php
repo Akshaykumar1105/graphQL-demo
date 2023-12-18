@@ -19,7 +19,7 @@ class BlogCollection extends Query
     }
 
     protected $attributes = [
-        'name' => 'blog collection',
+        'name' => 'blogCollection',
     ];
 
     public function type(): Type

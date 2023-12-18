@@ -12,7 +12,7 @@ class blogFilterInput extends InputType
 {
     protected $attributes = [
         'name' => 'blogFilterInput',
-        'description' => 'A type of blog input',
+        'description' => 'A type of blog filter input',
     ];
 
     public function fields(): array
