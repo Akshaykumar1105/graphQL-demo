@@ -31,9 +31,6 @@ class MediaService
 
     public function destroy($id)
     {
-        $media = Media::find($id);
-        $media->delete();
-
-        return true;
+        return Media::whereId($id)->delete();
     }
 }

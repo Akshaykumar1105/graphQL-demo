@@ -34,7 +34,7 @@ class Login extends Mutation{
             ],
             'password' => [
                 "type" => Type::string(),
-                'rules' => ['required', 'regex:' . config('site.password.regex')],
+                'rules' => ['required', 'min:8' , 'regex:' . config('site.password.regex')],
             ]
         ];
     }

@@ -18,7 +18,7 @@ class UserOtpService
         $this->userOtpObj->create([
             'user_id' => $user->id,
             'otp' => $otp,
-            'otp_for' => config('site.otp_for.reset_password')
+            'used_for' => config('site.otp_used_for.reset_password')
         ]);
     }
 

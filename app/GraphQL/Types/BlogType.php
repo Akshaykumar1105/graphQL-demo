@@ -47,7 +47,7 @@ class BlogType extends GraphQLType
                 "description" => "Full description of the blog",
             ],
             "isPublished" => [
-                "type" => Type::string(),
+                "type" => Type::boolean(),
                 "description" => "Indicates whether the blog is published",
                 "alias" => 'is_published',
             ],

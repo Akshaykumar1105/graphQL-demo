@@ -4,33 +4,29 @@ namespace App\Services;
 
 use App\Models\Blog;
 use Plank\Mediable\Media;
+use App\Traits\FilterTrait;
 use Illuminate\Support\Facades\Auth;
 
 class BlogService
 {
+    use FilterTrait;
 
     public function __construct(private Blog $blogObj)
     {
         //
     }
 
-    public function collection($args)
+    public function collection($inputs)
     {
-        $search = $args['search'];
-        $categoryId = $args['input']['category_id'];
-        $isPublished = $args['input']['is_published'];
+        $blogs = $this->blogObj->with($inputs['with'])->select($inputs['select']);
 
-        $blogs = $this->blogObj->with($args['with'])->select($args['select']);
-
-        if ($search) {
-            $blogs->search($search);
-        } elseif ($categoryId) {
-            $blogs->categoryFilter($categoryId);
-        } elseif ($isPublished){
-            $blogs->isPublished($isPublished);
+        if ($inputs['search']) {
+            $blogs->search($inputs['search']);
         }
 
-        return $blogs->latest()->paginate($args['limit'], ['*'], 'page', $args['page']);
+        $this->filter($blogs, $inputs['input']);
+
+        return $blogs->latest()->paginate($inputs['limit'], ['*'], 'page', $inputs['page']);
     }
 
     public function store($inputs)
@@ -43,12 +39,16 @@ class BlogService
 
         $blog->attachMedia($media, ['blog']);
 
-        return $blog;
+        return $this->resource($blog->id, $inputs);
     }
 
-    public function resource($id, $args)
+    public function resource($id, $inputs)
     {
-        return  $this->blogObj->whereId($id)->with($args['with'])->select($args['select'])->first();
+        $select = $inputs['select'] ?? '*';
+
+        $with = $inputs['with'] ?? $this->blogObj->relationships;
+
+        return  $this->blogObj->with($with)->select($select)->find($id);
     }
 
     public function update($id, $inputs)
@@ -57,19 +57,11 @@ class BlogService
 
         $blog->update($inputs);
 
-        return $blog;
+        return $this->resource($id, $inputs);
     }
 
     public function destroy($id)
     {
-        $blog = $this->blogObj->whereId($id)->first();
-
-        foreach ($blog->getMedia('blog') as $media) {
-            $media->delete();
-        }
-
-        $blog->delete();
-
-        return true;
+        return  $this->blogObj->whereId($id)->delete();
     }
 }

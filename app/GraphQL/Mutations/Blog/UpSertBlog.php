@@ -46,7 +46,7 @@ class UpSertBlog extends Mutation
         $fileds = $getSelectFields();
         $args['select'] = $fileds->getSelect();
         $args['with'] = $fileds->getRelations();
-        
+
         if(!isset($args['id'])){
           return  $this->blogService->store($args['input']);
         }

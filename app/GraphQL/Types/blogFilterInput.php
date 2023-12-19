@@ -25,7 +25,7 @@ class BlogFilterInput extends InputType
             ],
             'isPublished' => [
                 "type" => Type::boolean(),
-                'rules' => ['nullable'],
+                'rules' => ['nullable', 'boolean'],
                 "alias" => 'is_published',
             ],
         ];

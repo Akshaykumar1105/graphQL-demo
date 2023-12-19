@@ -16,19 +16,23 @@ class UserService
 
     public function collection($args)
     {
-        $blogs = $this->userObj->with($args['with'])->select($args['select']);
+        $users = $this->userObj->with($args['with'])->select($args['select']);
         $search = $args['search'];
         
         if ($search) {
-            $blogs->search($search);
+            $users->search($search);
         }
 
-        return $blogs->paginate($args['limit'], ['*'], 'page', $args['page']);
+        return $users->paginate($args['limit'], ['*'], 'page', $args['page']);
     }
 
-    public function resource($args)
+    public function resource($id,$args)
     {
-        return $this->userObj->whereId(Auth::id())->with($args['with'])->select($args['select'])->first();
+        $select = $args['select'] ?? '*';
+
+        $with = $inputs['with'] ?? $this->userObj->relationships;
+        
+        return $this->userObj->whereId($id)->with($with)->select($select)->first();
     }
 
     public function update($inputs){
