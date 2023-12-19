@@ -44,7 +44,7 @@ class AuthService
 
         return collect([
             "user" => $user,
-            "token" => $user->createToken('App')->plainTextToken
+            "token" => $user->createToken(config('site.access_token'))->plainTextToken
         ]);
     }
 

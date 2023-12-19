@@ -90,7 +90,7 @@ return [
     
     'types' => [
         "userType" => App\GraphQL\Types\UserType::class,
-        "loginUser" => \App\GraphQL\Types\LoginUser::class,
+        "loginUserType" => \App\GraphQL\Types\LoginUserType::class,
         "blogType" => \App\GraphQL\Types\BlogType::class,
         \Rebing\GraphQL\Support\UploadType::class,
         "mediaType" => \App\GraphQL\Types\MediaType::class,

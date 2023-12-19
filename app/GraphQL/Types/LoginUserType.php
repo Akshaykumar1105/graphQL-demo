@@ -8,10 +8,10 @@ use GraphQL\Type\Definition\Type;
 use Rebing\GraphQL\Support\Facades\GraphQL as FacadesGraphQL;
 use Rebing\GraphQL\Support\Type as GraphQLType;
 
-class LoginUser extends GraphQLType
+class LoginUserType extends GraphQLType
 {
     protected $attributes = [
-        'name' => 'loginUser',
+        'name' => 'loginUserType',
         'description' => 'A type of login user'
     ];
 

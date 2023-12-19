@@ -23,7 +23,7 @@ class Login extends Mutation{
 
     public function type(): Type
     {
-        return GraphQL::type("loginUser");
+        return GraphQL::type("loginUserType");
     }
 
     public function args(): array
