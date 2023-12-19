@@ -50,7 +50,7 @@ class SignUp extends Mutation
             ],
             'confirmPassword' => [
                 "type" => Type::string(),
-                'rules' => ['required'],
+                'rules' => ['required', 'same:password'],
                 "alias" => 'confirm_password',
             ],
             'mediaId' => [
