@@ -16,7 +16,7 @@ class ResetPassword extends Mutation
     }
 
     protected $attributes = [
-        'name' => 'reset Password',
+        'name' => 'resetPassword',
         'description' => 'A mutation for reset password'
     ];
 
@@ -44,7 +44,7 @@ class ResetPassword extends Mutation
             ],
             'otp' => [
                 "type" => Type::int(),
-                'rules' => ['required', 'exists:user_otps,otp'],
+                'rules' => ['required', 'min:6', 'exists:user_otps,otp'],
             ],
         ];
     }
