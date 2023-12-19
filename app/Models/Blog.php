@@ -2,15 +2,16 @@
 
 namespace App\Models;
 
-use Cviebrock\EloquentSluggable\Sluggable;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Traits\FilterTrait;
 use Plank\Mediable\Mediable;
+use Illuminate\Database\Eloquent\Model;
+use Cviebrock\EloquentSluggable\Sluggable;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Blog extends Model
 {
-    use HasFactory, Sluggable, SoftDeletes,  Mediable;
+    use HasFactory, Sluggable, SoftDeletes,  Mediable, FilterTrait;
 
     protected $fillable = [
         'user_id',
@@ -46,7 +47,7 @@ class Blog extends Model
         });
     }
 
-    public function scopeCategoryFilter($query, $categoryId)
+    public function scopeCategoryId($query, $categoryId)
     {
         return $query->whereCategoryId($categoryId);
     }

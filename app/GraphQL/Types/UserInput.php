@@ -22,12 +22,12 @@ class UserInput extends InputType
         return [
             'firstName' => [
                 "type" => Type::string(),
-                'rules' => ['required'],
+                'rules' => ['required', 'max:16'],
                 "alias" => 'first_name',
             ],
             'lastName' => [
                 "type" => Type::string(),
-                'rules' => ['required'],
+                'rules' => ['required', 'max:16'],
                 "alias" => 'last_name',
             ],
             'email' => [

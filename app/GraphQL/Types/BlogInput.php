@@ -39,7 +39,7 @@ class BlogInput extends InputType
             ],
             'isPublished' => [
                 "type" => Type::boolean(),
-                'rules' => ['required'],
+                'rules' => ['required', 'boolean'],
                 "alias" => 'is_published',
             ],
             'mediaId' => [

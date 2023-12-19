@@ -30,7 +30,7 @@ class ChangePassword extends Mutation{
         return [
             'currentPassword' => [
                 "type" => Type::string(),
-                'rules' => ['required'],
+                'rules' => ['required', 'string', 'min:8', 'regex:' . config('site.password.regex')],
                 "alias" => 'current_password',
             ],
             'password' => [

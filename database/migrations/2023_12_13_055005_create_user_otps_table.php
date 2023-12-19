@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
-            $table->string('otp');
-            $table->string('otp_for');
+            $table->string('otp', 6);
+            $table->string('used_for');
             $table->timestamps();
         });
     }

@@ -18,7 +18,7 @@
             'regex' => "/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^\da-zA-Z]).*$/",
         ],
 
-        'otp_for' => [
+        'otp_used_for' => [
             'reset_password' => 'reset-password',
         ],
     ];

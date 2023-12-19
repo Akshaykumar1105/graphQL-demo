@@ -9,7 +9,7 @@ use Rebing\GraphQL\Support\Query;
 use GraphQL\Type\Definition\ResolveInfo;
 use Rebing\GraphQL\Support\Facades\GraphQL;
 
-class UserResource extends Query
+class UserResourceQuery extends Query
 {
 
     public function __construct(private UserService $userService)
@@ -36,7 +36,8 @@ class UserResource extends Query
         $fileds = $getSelectFields();
         $args['select'] = $fileds->getSelect();
         $args['with'] = $fileds->getRelations();
+        $authId = auth('sanctum')->user()->id;
 
-        return $this->userService->resource($args);
+        return $this->userService->resource($authId, $args);
     }
 }

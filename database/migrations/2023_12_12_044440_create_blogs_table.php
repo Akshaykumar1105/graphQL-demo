@@ -18,8 +18,8 @@ return new class extends Migration
             $table->unsignedBigInteger('category_id');
             $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
             $table->string('slug')->unique();
-            $table->string('title');
-            $table->text('summary');
+            $table->string('title', 64);
+            $table->text('summary', 155);
             $table->text('description');
             $table->boolean('is_published')->default(true);
             $table->timestamps();

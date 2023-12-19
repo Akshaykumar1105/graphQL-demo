@@ -9,7 +9,7 @@ use Rebing\GraphQL\Support\Query;
 use GraphQL\Type\Definition\ResolveInfo;
 use Rebing\GraphQL\Support\Facades\GraphQL;
 
-class UserCollection extends Query
+class UserCollectionQuery extends Query
 {
 
     public function __construct(private UserService $userService)

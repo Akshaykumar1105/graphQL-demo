@@ -14,7 +14,7 @@ use Illuminate\Validation\ValidationException;
 
 class AuthService
 {
-    public function __construct(private UserOtpService $userOtpService, private User $userObj)
+    public function __construct(private UserOtpService $userOtpService, private User $userObj, private UserService $userService)
     {
         //
     }
@@ -28,15 +28,15 @@ class AuthService
 
             $user->attachMedia($media, ['avatar']);
         }
-
-        return $user;
+        
+        return $this->userService->resource($user->id, $inputs);
     }
 
-    public function login($args)
+    public function login($inputs)
     {
-        $user = $this->userObj->whereEmail($args['email'])->first();
+        $user = $this->userObj->whereEmail($inputs['email'])->first();
 
-        if (!$user || !Hash::check($args['password'], $user->password)) {
+        if (!$user || !Hash::check($inputs['password'], $user->password)) {
             throw ValidationException::withMessages([
                 'email' => ['The provided credentials are incorrect.'],
             ]);
@@ -55,9 +55,9 @@ class AuthService
         return true;
     }
 
-    public function forgotPassword($args)
+    public function forgotPassword($inputs)
     {
-        $user = $this->userObj->whereEmail($args['email'])->first();
+        $user = $this->userObj->whereEmail($inputs['email'])->first();
 
         $otp = Helper::generateOTP(config('site.generateOtpLength'));
 
@@ -72,11 +72,11 @@ class AuthService
         return true;
     }
 
-    public function resetPassword($args)
+    public function resetPassword($inputs)
     {
-        $user = $this->userObj->whereEmail($args['email'])->first();
+        $user = $this->userObj->whereEmail($inputs['email'])->first();
 
-        $otp = $this->userOtpService->otpExists($user, $args['otp']);
+        $otp = $this->userOtpService->otpExists($user, $inputs['otp']);
 
         $isOtpExpired = $this->userOtpService->isOtpExpired($otp);
 
@@ -85,7 +85,7 @@ class AuthService
             return false;
         }
     
-        $user->password = $args['password'];
+        $user->password = $inputs['password'];
         $user->save();
     
         $otp->delete();
@@ -93,13 +93,13 @@ class AuthService
         return true;
     }
 
-    public function changePassword($args)
+    public function changePassword($inputs)
     {
         $user = auth('sanctum')->user();
 
-        $newPassword = trim($args['password']);
+        $newPassword = trim($inputs['password']);
 
-        if (Hash::check(trim($args['current_password']), $user->password)) {
+        if (Hash::check(trim($inputs['current_password']), $user->password)) {
             $user->password = $newPassword;
             $user->save();
             return true;

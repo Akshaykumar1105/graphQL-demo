@@ -41,9 +41,9 @@ return [
             'query' => [
                 "blogCollection" => \App\GraphQL\Queries\Blog\BlogCollectionQuery::class,
                 "blogResource" => \App\GraphQL\Queries\Blog\BlogResourceQuery::class,
-                'userCollection' => \App\GraphQL\Queries\User\UserCollection::class,
+                'userCollection' => \App\GraphQL\Queries\User\UserCollectionQuery::class,
                 "categoryCollection" => \App\GraphQL\Queries\Category\CategoryCollectionQuery::class,
-                "userResource" => \App\GraphQL\Queries\User\UserResource::class,
+                "userResource" => \App\GraphQL\Queries\User\UserResourceQuery::class,
             ],
             'mutation' => [
                "logout" => App\Graphql\Mutations\Auth\Logout::class,
@@ -65,7 +65,7 @@ return [
         ],
         'open' => [
             'query' => [
-                'userCollection' => \App\GraphQL\Queries\User\UserCollection::class,
+                'userCollection' => \App\GraphQL\Queries\User\UserCollectionQuery::class,
             ],
             'mutation' => [
                 "login" => App\Graphql\Mutations\Auth\Login::class,
