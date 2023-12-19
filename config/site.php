@@ -21,5 +21,7 @@
         'otp_used_for' => [
             'reset_password' => 'reset-password',
         ],
+
+        'access_token' => 'Access Token',
     ];
 ?>
