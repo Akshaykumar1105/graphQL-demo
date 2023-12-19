@@ -3,8 +3,8 @@
 namespace App\Services;
 
 use App\Models\User;
-use Illuminate\Support\Facades\Auth;
 use Plank\Mediable\Media;
+use Illuminate\Support\Facades\Auth;
 
 class UserService
 {
@@ -31,12 +31,12 @@ class UserService
         return $this->userObj->whereId(Auth::id())->with($args['with'])->select($args['select'])->first();
     }
 
-    public function update($args){
+    public function update($inputs){
         $user = $this->userObj->find(Auth::id());
 
-        $user->update($args['input']);
+        $user->update($inputs);
 
-        $media = Media::find($args['input']['media_id']);
+        $media = Media::find($inputs['media_id']);
 
         $user->syncMedia($media, ['blog']);
         

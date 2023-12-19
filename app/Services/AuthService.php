@@ -7,9 +7,8 @@ use App\Helpers\Helper;
 use Plank\Mediable\Media;
 use App\Mail\ForgotPassword;
 use App\Services\UserOtpService;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Validation\ValidationException;
 
@@ -51,7 +50,7 @@ class AuthService
 
     public function logout()
     {
-        Auth::user()->tokens()->delete();
+        auth('sanctum')->user()->tokens()->delete();
 
         return true;
     }
@@ -81,16 +80,17 @@ class AuthService
 
         $isOtpExpired = $this->userOtpService->isOtpExpired($otp);
 
-        if (!$isOtpExpired) {
-            $user->password = $args['password'];
-            $user->save();
-
+        if ($isOtpExpired) {
             $otp->delete();
-            
-            return true;
+            return false;
         }
-
-        return false;
+    
+        $user->password = $args['password'];
+        $user->save();
+    
+        $otp->delete();
+    
+        return true;
     }
 
     public function changePassword($args)

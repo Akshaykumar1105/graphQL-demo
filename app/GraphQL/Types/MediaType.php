@@ -7,7 +7,7 @@ namespace App\GraphQL\Types;
 use GraphQL\Type\Definition\Type;
 use Rebing\GraphQL\Support\Type as GraphQLType;
 
-class Media extends GraphQLType
+class MediaType extends GraphQLType
 {
     protected $attributes = [
         'name' => 'mediaType',

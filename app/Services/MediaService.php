@@ -8,11 +8,11 @@ use Plank\Mediable\Facades\MediaUploader;
 class MediaService
 {
 
-    public function store($args)
+    public function store($inputs)
     {
-        return MediaUploader::fromSource($args['input']['image'])
+        return MediaUploader::fromSource($inputs['image'])
             ->toDisk('public')
-            ->toDirectory($args['input']['type'])
+            ->toDirectory($inputs['type'])
             ->upload();
     }
 

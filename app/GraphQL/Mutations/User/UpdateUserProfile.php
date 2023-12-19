@@ -43,8 +43,7 @@ class UpdateUserProfile extends Mutation
     {
         $fileds = $getSelectFields();
         $args['select'] = $fileds->getSelect();
-        $authId = Auth::id();
 
-        return $this->userService->update($authId ,$args);
+        return $this->userService->update($args['input']);
     }
 }

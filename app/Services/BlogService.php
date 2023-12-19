@@ -18,6 +18,7 @@ class BlogService
     {
         $search = $args['search'];
         $categoryId = $args['input']['category_id'];
+        $isPublished = $args['input']['is_published'];
 
         $blogs = $this->blogObj->with($args['with'])->select($args['select']);
 
@@ -25,18 +26,20 @@ class BlogService
             $blogs->search($search);
         } elseif ($categoryId) {
             $blogs->categoryFilter($categoryId);
+        } elseif ($isPublished){
+            $blogs->isPublished($isPublished);
         }
 
-        return $blogs->paginate($args['limit'], ['*'], 'page', $args['page']);
+        return $blogs->latest()->paginate($args['limit'], ['*'], 'page', $args['page']);
     }
 
-    public function store($args)
+    public function store($inputs)
     {
-        $args['input']['user_id'] = Auth::id();
+        $inputs['user_id'] = Auth::id();
 
-        $blog = $this->blogObj->create($args['input']);
+        $blog = $this->blogObj->create($inputs);
 
-        $media = Media::find($args['input']['media_id']);
+        $media = Media::find($inputs['media_id']);
 
         $blog->attachMedia($media, ['blog']);
 

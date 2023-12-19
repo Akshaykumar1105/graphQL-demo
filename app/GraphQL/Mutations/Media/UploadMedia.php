@@ -47,6 +47,6 @@ class UploadMedia extends Mutation
             return $this->mediaService->update($args['id'], $args['input']);
         }
         
-        return $this->mediaService->store($args);
+        return $this->mediaService->store($args['input']);
     }
 }

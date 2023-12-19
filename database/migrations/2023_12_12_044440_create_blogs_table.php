@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('title');
             $table->text('summary');
             $table->text('description');
-            $table->boolean('is_published')->default(false);
+            $table->boolean('is_published')->default(true);
             $table->timestamps();
             $table->softDeletes();
         });
