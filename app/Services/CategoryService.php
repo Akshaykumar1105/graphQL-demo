@@ -12,8 +12,8 @@ class CategoryService
         //
     }
 
-    public function collection($args)
+    public function collection($inputs)
     {
-        return $this->categoryObj->select($args['select'])->get();
+        return $this->categoryObj->select($inputs['select'])->get();
     }
 }
