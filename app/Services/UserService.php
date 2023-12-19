@@ -26,9 +26,9 @@ class UserService
         return $users->paginate($args['limit'], ['*'], 'page', $args['page']);
     }
 
-    public function resource($id,$args)
+    public function resource($id,$inputs)
     {
-        $select = $args['select'] ?? '*';
+        $select = $inputs['select'] ?? '*';
 
         $with = $inputs['with'] ?? $this->userObj->relationships;
         
@@ -44,6 +44,6 @@ class UserService
 
         $user->syncMedia($media, ['blog']);
         
-        return $user;
+        return $this->resource($user->id, $inputs);
     }
 }
