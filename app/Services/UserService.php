@@ -14,20 +14,25 @@ class UserService
         //
     }
 
-    public function collection($args)
+    public function collection($inputs)
     {
-        $users = $this->userObj->with($args['with'])->select($args['select']);
-        $search = $args['search'];
+        $users = $this->userObj->with($inputs['with'])->select($inputs['select']);
+        $search = $inputs['search'];
         
         if ($search) {
             $users->search($search);
         }
 
-        return $users->paginate($args['limit'], ['*'], 'page', $args['page']);
+        return $users->paginate($inputs['limit'], ['*'], 'page', $inputs['page']);
     }
 
     public function resource($id,$inputs)
     {
+        if (!in_array('users.first_name', $inputs['select']) || !in_array('users.last_name', $inputs['select'])) {
+            $inputs['select'][] = 'users.first_name';
+            $inputs['select'][] = 'users.last_name';
+        }
+
         $select = $inputs['select'] ?? '*';
 
         $with = $inputs['with'] ?? $this->userObj->relationships;

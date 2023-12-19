@@ -36,11 +36,6 @@ class UserResourceQuery extends Query
         $fileds = $getSelectFields();
         $args['select'] = $fileds->getSelect();
         $args['with'] = $fileds->getRelations();
-        
-        if (!in_array('users.first_name', $args['select']) || !in_array('users.last_name', $args['select'])) {
-            $args['select'][] = 'users.first_name';
-            $args['select'][] = 'users.last_name';
-        }
 
         $authId = auth('sanctum')->user()->id;
 
