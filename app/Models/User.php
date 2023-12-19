@@ -51,7 +51,7 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
-    public $relationships = ['media'];
+    public $relationships = [];
 
     protected $appends = ['name'];
 

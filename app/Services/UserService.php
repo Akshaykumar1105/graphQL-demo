@@ -31,8 +31,8 @@ class UserService
         $select = $inputs['select'] ?? '*';
 
         $with = $inputs['with'] ?? $this->userObj->relationships;
-        
-        return $this->userObj->whereId($id)->with($with)->select($select)->first();
+
+        return $this->userObj->with($with)->select($select)->find($id);
     }
 
     public function update($inputs){
