@@ -38,7 +38,7 @@ class AuthService
 
         if (!$user || !Hash::check($inputs['password'], $user->password)) {
             throw ValidationException::withMessages([
-                'email' => ['The provided credentials are incorrect.'],
+                 __('auth.password'),
             ]);
         }
 

@@ -27,11 +27,11 @@ class BlogInput extends InputType
             ],
             'title' => [
                 "type" => Type::string(),
-                'rules' => ['required', 'string'],
+                'rules' => ['required', 'string', 'max:64'],
             ],
             'summary' => [
                 "type" => Type::string(),
-                'rules' => ['required', 'string'],
+                'rules' => ['required', 'string', 'max:155'],
             ],
             'description' => [
                 "type" => Type::string(),
