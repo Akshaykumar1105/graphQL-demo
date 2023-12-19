@@ -93,7 +93,7 @@ return [
         "loginUser" => \App\GraphQL\Types\LoginUser::class,
         "blogType" => \App\GraphQL\Types\BlogType::class,
         \Rebing\GraphQL\Support\UploadType::class,
-        "mediaType" => \App\GraphQL\Types\Media::class,
+        "mediaType" => \App\GraphQL\Types\MediaType::class,
         "categoryType" => \App\GraphQL\Types\CategoryType::class,
         "userInput" => \App\GraphQL\Types\UserInput::class,
         "blogInput" => \App\GraphQL\Types\BlogInput::class,

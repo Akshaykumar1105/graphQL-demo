@@ -23,6 +23,11 @@ class BlogFilterInput extends InputType
                 'rules' => ['nullable', 'exists:categories,id'],
                 "alias" => 'category_id',
             ],
+            'isPublished' => [
+                "type" => Type::boolean(),
+                'rules' => ['nullable'],
+                "alias" => 'is_published',
+            ],
         ];
     }
 }

@@ -48,7 +48,7 @@ class UpSertBlog extends Mutation
         $args['with'] = $fileds->getRelations();
         
         if(!isset($args['id'])){
-          return  $this->blogService->store($args);
+          return  $this->blogService->store($args['input']);
         }
 
         return $this->blogService->update($args['id'], $args['input']);

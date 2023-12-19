@@ -30,8 +30,33 @@ class SignUp extends Mutation
     public function args(): array
     {
         return [
-            'input' => [
-                "type" => GraphQL::type("userInput"),
+            'firstName' => [
+                "type" => Type::string(),
+                'rules' => ['required'],
+                "alias" => 'first_name',
+            ],
+            'lastName' => [
+                "type" => Type::string(),
+                'rules' => ['required'],
+                "alias" => 'last_name',
+            ],
+            'email' => [
+                "type" => Type::string(),
+                'rules' => ['required', 'email', 'unique:users,email'],
+            ],
+            'password' => [
+                "type" => Type::string(),
+                'rules' => ['required', 'string', 'min:8', 'regex:' . config('site.password.regex')],
+            ],
+            'confirmPassword' => [
+                "type" => Type::string(),
+                'rules' => ['required'],
+                "alias" => 'confirm_password',
+            ],
+            'mediaId' => [
+                "type" => Type::int(),
+                'rules' => ['nullable', 'exists:media,id'],
+                "alias" => 'media_id',
             ],
         ];
     }
@@ -42,6 +67,6 @@ class SignUp extends Mutation
         $args['select'] = $fileds->getSelect();
         $args['with'] = $fileds->getRelations();
 
-        return $this->authService->signUp($args['input']);
+        return $this->authService->signUp($args);
     }
 }

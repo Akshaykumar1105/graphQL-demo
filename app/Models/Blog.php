@@ -51,6 +51,11 @@ class Blog extends Model
         return $query->whereCategoryId($categoryId);
     }
 
+    public function scopeIsPublished($query, $isPublished)
+    {
+        return $query->whereIsPublished($isPublished);
+    }
+
     public function user()
     {
         return $this->belongsTo(User::class);
