@@ -10,7 +10,7 @@ use Rebing\GraphQL\Support\Query;
 use GraphQL\Type\Definition\ResolveInfo;
 use Rebing\GraphQL\Support\Facades\GraphQL;
 
-class BlogCollection extends Query
+class BlogCollectionQuery extends Query
 {
     use SelectFieldTrait;
 
@@ -20,6 +20,7 @@ class BlogCollection extends Query
 
     protected $attributes = [
         'name' => 'blogCollection',
+        'description' => 'A query for list of blogs'
     ];
 
     public function type(): Type

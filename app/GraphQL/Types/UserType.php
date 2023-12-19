@@ -42,10 +42,10 @@ class UserType extends GraphQLType
                 "alias" => 'mobile_no',
             ],
             'name' => [
+                'selectable' => false,
                 'type' => Type::string(),
                 'description' => 'full name of user',
-                'selectable'  => false,
-                'resolve'     => function(User $user) {
+                'resolve' => function(User $user) {
                     return $user->name;
                 }
             ],

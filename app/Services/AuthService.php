@@ -20,16 +20,16 @@ class AuthService
         //
     }
 
-    public function signUp($args)
+    public function signUp($inputs)
     {
-        $user = $this->userObj->create($args['input'])->assignRole(config('site.roles.customer'));
+        $user = $this->userObj->create($inputs)->assignRole(config('site.roles.customer'));
 
-        if($args['input']['media_id']){
-            $media = Media::find($args['input']['media_id']);
+        if ($inputs['media_id']) {
+            $media = Media::find($inputs['media_id']);
 
-            $user->attachMedia($media, ['avatar']);    
+            $user->attachMedia($media, ['avatar']);
         }
-        
+
         return $user;
     }
 
@@ -79,9 +79,14 @@ class AuthService
 
         $otp = $this->userOtpService->otpExists($user, $args['otp']);
 
-        if ($otp) {
+        $isOtpExpired = $this->userOtpService->isOtpExpired($otp);
+
+        if (!$isOtpExpired) {
             $user->password = $args['password'];
             $user->save();
+
+            $otp->delete();
+            
             return true;
         }
 

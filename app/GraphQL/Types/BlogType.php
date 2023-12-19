@@ -33,9 +33,10 @@ class BlogType extends GraphQLType
                 "type" => Type::string(),
                 "description" => "Slug of the blog",
             ],
-            "category_id" => [
-                "type" => Type::string(),
-                "description" => "Category of the blog",
+            'categoryId' => [
+                "type" => Type::int(),
+                "description" => "category of the blog",
+                "alias" => 'category_id',
             ],
             "summary" => [
                 "type" => Type::string(),
@@ -45,13 +46,15 @@ class BlogType extends GraphQLType
                 "type" => Type::string(),
                 "description" => "Full description of the blog",
             ],
-            "is_published" => [
+            "isPublished" => [
                 "type" => Type::string(),
                 "description" => "Indicates whether the blog is published",
+                "alias" => 'is_published',
             ],
-            "created_at" => [
+            "createdAt" => [
                 "type" => Type::string(),
                 "description" => "blog created time",
+                "alias" => 'created_at',
             ],
             "user" => [
                 "type" => GraphQL::type('userType'),

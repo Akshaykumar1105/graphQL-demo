@@ -21,7 +21,7 @@ class MediaInput extends InputType
                 'type' => GraphQL::type('Upload'),
                 'rules' => ['required', 'image', 'mimes:jpeg,png,jpg,gif', 'max:15000'],
             ],
-            'image_type' => [
+            'type' => [
                 'type' => Type::string(),
                 'rules' => ['required', 'in:' . implode(',', config('site.mediaType'))],
             ]

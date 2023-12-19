@@ -12,17 +12,17 @@ class MediaService
     {
         return MediaUploader::fromSource($args['input']['image'])
             ->toDisk('public')
-            ->toDirectory($args['input']['image_type'])
+            ->toDirectory($args['input']['type'])
             ->upload();
     }
 
-    public function update($args)
+    public function update($id, $inputs)
     {
-        $media = Media::find($args['id']);
+        $media = Media::find($id);
 
-        $fileName = pathinfo($args['input']['image']->getClientOriginalName(), PATHINFO_FILENAME);
+        $fileName = pathinfo($inputs['image']->getClientOriginalName(), PATHINFO_FILENAME);
         
-         MediaUploader::fromSource($args['input']['image'])
+         MediaUploader::fromSource($inputs['image'])
             ->useFilename($fileName)
             ->replace($media);
 

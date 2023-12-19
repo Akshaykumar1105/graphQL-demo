@@ -1,41 +1,34 @@
 <?php
 
-namespace App\GraphQL\Queries\Blog;
+namespace App\GraphQL\Queries\Category;
 
 use Closure;
-use App\Services\BlogService;
-use App\Traits\SelectFieldTrait;
+use App\Services\CategoryService;
 use GraphQL\Type\Definition\Type;
 use Rebing\GraphQL\Support\Query;
 use GraphQL\Type\Definition\ResolveInfo;
 use Rebing\GraphQL\Support\Facades\GraphQL;
 
-class BlogResource extends Query
+class CategoryCollectionQuery extends Query
 {
-    use SelectFieldTrait;
 
-    public function __construct(private BlogService $blogService)
+    public function __construct(private CategoryService $categoryService)
     {
     }
 
     protected $attributes = [
-        'name' => 'blog resource',
+        'name' => 'categoryCollection',
+        'description' => 'A query for list of category'
     ];
 
     public function type(): Type
     {
-        return GraphQL::type('blogType');
+        return Type::listOf(GraphQL::type('categoryType'));
     }
 
     public function args(): array
     {
-        return [
-            'id' => [
-                'type' => Type::int(),
-                'description' => 'ID of the blog',
-                'rules' => ['nullable', 'exists:blogs,id']
-            ],
-        ];
+        return [];
     }
 
     public function resolve($root, array $args, $context, ResolveInfo $resolveInfo, Closure $getSelectFields)
@@ -44,6 +37,6 @@ class BlogResource extends Query
         $args['select'] = $fileds->getSelect();
         $args['with'] = $fileds->getRelations();
 
-        return $this->blogService->resource($args);
+        return $this->categoryService->collection($args);
     }
 }

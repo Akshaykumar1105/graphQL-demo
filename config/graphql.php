@@ -35,51 +35,15 @@ return [
         'enable' => true,
     ],
 
-    // The schemas for query and/or mutation. It expects an array of schemas to provide
-    // both the 'query' fields and the 'mutation' fields.
-    //
-    // You can also provide a middleware that will only apply to the given schema
-    //
-    // Example:
-    //
-    //  'schemas' => [
-    //      'default' => [
-    //          'controller' => MyController::class . '@method',
-    //          'query' => [
-    //              App\GraphQL\Queries\UsersQuery::class,
-    //          ],
-    //          'mutation' => [
-    //
-    //          ]
-    //      ],
-    //      'user' => [
-    //          'query' => [
-    //              App\GraphQL\Queries\ProfileQuery::class,
-    //          ],
-    //          'mutation' => [
-    //
-    //          ],
-    //          'middleware' => ['auth'],
-    //      ],
-    //      'user/me' => [
-    //          'query' => [
-    //              App\GraphQL\Queries\MyProfileQuery::class,
-    //          ],
-    //          'mutation' => [
-    //
-    //          ],
-    //          'middleware' => ['auth'],
-    //      ],
-    //  ]
-    //
+   
     'schemas' => [
         'default' => [
             'query' => [
-                "user" => App\GraphQL\Queries\User\UserResource::class,
-                "blogCollection" => \App\GraphQL\Queries\Blog\BlogCollection::class,
-                "blogResource" => \App\GraphQL\Queries\Blog\BlogResource::class,
+                "blogCollection" => \App\GraphQL\Queries\Blog\BlogCollectionQuery::class,
+                "blogResource" => \App\GraphQL\Queries\Blog\BlogResourceQuery::class,
                 'userCollection' => \App\GraphQL\Queries\User\UserCollection::class,
-                "categoryCollection" => \App\GraphQL\Queries\Category\CategoryCollection::class,
+                "categoryCollection" => \App\GraphQL\Queries\Category\CategoryCollectionQuery::class,
+                "userResource" => \App\GraphQL\Queries\User\UserResource::class,
             ],
             'mutation' => [
                "logout" => App\Graphql\Mutations\Auth\Logout::class,
@@ -101,8 +65,7 @@ return [
         ],
         'open' => [
             'query' => [
-                "user" => App\GraphQL\Queries\User\UserResource::class,
-  
+                'userCollection' => \App\GraphQL\Queries\User\UserCollection::class,
             ],
             'mutation' => [
                 "login" => App\Graphql\Mutations\Auth\Login::class,
@@ -124,16 +87,7 @@ return [
             'execution_middleware' => null,
         ],
     ],
-
-    // The global types available to all schemas.
-    // You can then access it from the facade like this: GraphQL::type('user')
-    //
-    // Example:
-    //
-    // 'types' => [
-    //     App\GraphQL\Types\UserType::class
-    // ]
-    //
+    
     'types' => [
         "userType" => App\GraphQL\Types\UserType::class,
         "loginUser" => \App\GraphQL\Types\LoginUser::class,
@@ -145,7 +99,8 @@ return [
         "blogInput" => \App\GraphQL\Types\BlogInput::class,
         "updateUserInput" => \App\GraphQL\Types\UpdateUserInput::class,
         'mediaInput' => \App\GraphQL\Types\MediaInput::class,
-        'blogFilterInput' => \App\GraphQL\Types\blogFilterInput::class,
+        'blogFilterInput' => \App\GraphQL\Types\BlogFilterInput::class,
+        'resetPasswordInput' => \App\GraphQL\Types\ResetPasswordInput::class,
         // ExampleRelationType::class,
         // \Rebing\GraphQL\Support\UploadType::class,
     ],

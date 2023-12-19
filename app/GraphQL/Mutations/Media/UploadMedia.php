@@ -44,7 +44,7 @@ class UploadMedia extends Mutation
     public function resolve($root, array $args, $context, ResolveInfo $resolveInfo, Closure $getSelectFields)
     {
         if ($args['id']) {
-            return $this->mediaService->update($args);
+            return $this->mediaService->update($args['id'], $args['input']);
         }
         
         return $this->mediaService->store($args);
