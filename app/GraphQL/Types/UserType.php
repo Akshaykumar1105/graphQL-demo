@@ -45,8 +45,8 @@ class UserType extends GraphQLType
                 'selectable' => false,
                 'type' => Type::string(),
                 'description' => 'full name of user',
-                'resolve' => function(User $user) {
-                    return $user->name;
+                'resolve' => function($root, $args) {
+                    return $root->name;
                 }
             ],
             'media' => [
