@@ -37,7 +37,7 @@ class UpdateUserInput extends InputType
             ],
             'mobileNo' => [
                 "alias" => 'mobile_no',
-                "type" => Type::int(),
+                "type" => Type::string(),
                 'rules' => ['required', 'digits:10', 'numeric'],
             ],
             'mediaId' => [
