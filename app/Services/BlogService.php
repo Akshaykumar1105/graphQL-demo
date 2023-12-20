@@ -70,9 +70,6 @@ class BlogService
 
     public function destroy($id)
     {
-        $blog = $this->blogObj->find($id);
-        $blog->firstMedia('blog')->delete();
-
-        return  $blog->delete();
+        return  $this->blogObj->destroy($id);
     }
 }
