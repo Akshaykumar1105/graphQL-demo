@@ -47,7 +47,7 @@ class UserService
 
         $media = Media::find($inputs['media_id']);
 
-        $user->syncMedia($media, ['blog']);
+        $user->syncMedia($media, ['avatar']);
         
         return $this->resource($user->id, $inputs);
     }
