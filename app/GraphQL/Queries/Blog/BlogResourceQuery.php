@@ -45,6 +45,10 @@ class BlogResourceQuery extends Query
         $args['select'] = $fileds->getSelect();
         $args['with'] = $fileds->getRelations();
 
+        if (isset($args['with']['user'])) {
+            unset($args['with']['user']);
+        }
+
         return $this->blogService->resource($args['id'], $args);
     }
 }

@@ -58,6 +58,10 @@ class BlogCollectionQuery extends Query
         $args['select'] = $fileds->getSelect();
         $args['with'] = $fileds->getRelations();
 
+        if (isset($args['with']['user'])) {
+            unset($args['with']['user']);
+        }
+        
         return $this->blogService->collection($args);
     }
 }
