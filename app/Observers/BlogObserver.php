@@ -3,14 +3,14 @@
 namespace App\Observers;
 
 use App\Models\Blog;
+use Illuminate\Support\Facades\Log;
 
 class BlogObserver
 {
-   
+    
     public function deleting(Blog $blog): void
     {
-        foreach ($blog->getMedia('blog') as $media) {
-            $media->delete();
-        }
+        Log::info("Deleting media for Blog ID: {$blog->id}");
+        $blog->firstMedia('blog')->delete();
     }
 }
