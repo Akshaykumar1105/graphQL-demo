@@ -57,6 +57,10 @@ class BlogService
 
         $blog->update($inputs);
 
+        $media = Media::find($inputs['media_id']);
+
+        $blog->syncMedia($media, ['blog']);
+
         return $this->resource($id, $inputs);
     }
 
