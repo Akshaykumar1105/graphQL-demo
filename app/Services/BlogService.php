@@ -57,15 +57,22 @@ class BlogService
 
         $blog->update($inputs);
 
-        $media = Media::find($inputs['media_id']);
+        if ($blog->firstMedia('blog')->id !== $inputs['media_id']) {
+            $blog->firstMedia('blog')->delete();
+            
+            $media = Media::find($inputs['media_id']);
 
-        $blog->syncMedia($media, ['blog']);
+            $blog->syncMedia($media, ['blog']);
+        }
 
         return $this->resource($id, $inputs);
     }
 
     public function destroy($id)
     {
-        return  $this->blogObj->whereId($id)->delete();
+        $blog = $this->blogObj->find($id);
+        $blog->firstMedia('blog')->delete();
+
+        return  $blog->delete();
     }
 }
