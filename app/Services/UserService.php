@@ -40,7 +40,8 @@ class UserService
         return $this->userObj->with($with)->select($select)->find($id);
     }
 
-    public function update($inputs){
+    public function update($inputs, $args){
+
         $user = $this->userObj->find(Auth::id());
 
         $user->update($inputs);
@@ -49,6 +50,6 @@ class UserService
 
         $user->syncMedia($media, ['avatar']);
         
-        return $this->resource($user->id, $inputs);
+        return $this->resource($user->id, $args);
     }
 }

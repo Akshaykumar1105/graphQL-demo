@@ -18,6 +18,7 @@ class UserCollectionQuery extends Query
 
     protected $attributes = [
         'name' => 'userCollection',
+        'description' => 'A query for list of users'
     ];
 
     public function type(): Type
