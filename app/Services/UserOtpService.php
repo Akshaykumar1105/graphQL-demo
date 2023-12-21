@@ -34,6 +34,6 @@ class UserOtpService
         $currentTime = Carbon::now();
         $expirationTime = $otp->created_at->addMinutes(config('site.otp_expiration_time'));
         
-        return $currentTime->greaterThan($expirationTime);;
+        return $currentTime->greaterThan($expirationTime);
     }
 }
